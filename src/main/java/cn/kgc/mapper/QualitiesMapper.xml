@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kgc.mapper.ProductsMapper">
+    <resultMap id="workMap" type="Products">
+        <id column="id" property="id"/>
+        <result column="productName" property="productName "/>
+        <result column="productDare" property="productDare"/>
+        <result column="productSum" property="productSum"/>
+        <result column="productDesc" property="productDesc"/>
+        <result column="productPrice" property="productPrice"/>
+        <association property="qualities" javaType="Qualities">
+            <result column="score" property="score"></result>
+        </association>
+    </resultMap>
+    <select id="query" resultMap="workMap">
+        select p.*,q.score from products p,qualities q where q.produtId=p.id order by q.id desc
+    </select>
+</mapper>
